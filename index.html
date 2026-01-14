@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends Project Hub - Affordable Projects for Students</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 50%, #f3e8ff 100%);
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #2563eb, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: #111827;
+        }
+
+        .hero .highlight {
+            background: linear-gradient(135deg, #2563eb, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #9333ea);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2563eb;
+            border: 2px solid #2563eb;
+        }
+
+        .btn-secondary:hover {
+            background: #eff6ff;
+        }
+
+        /* Features Section */
+        .features {
+            background: white;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #111827;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #2563eb, #9333ea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .category-card h3 {
+            font-size: 1.2rem;
+            color: #111827;
+        }
+
+        .ieee-note {
+            text-align: center;
+            margin-top: 2rem;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: white;
+            padding: 4rem 2rem;
+        }
+
+        .projects-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #eff6ff, #f3e8ff);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .project-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #111827;
+        }
+
+        .tech-stack {
+            color: #2563eb;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-card p {
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+
+        .more-projects {
+            text-align: center;
+            margin-top: 2rem;
+            color: #4b5563;
+            font-weight: 600;
+        }
+
+        /* Promise Section */
+        .promise {
+            background: linear-gradient(135deg, #2563eb, #9333ea);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .promise h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .promise p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-subtitle {
+            font-size: 1.25rem;
+            color: #4b5563;
+            margin-bottom: 2rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: #10b981;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .contact-btn:hover {
+            background: #059669;
+        }
+
+        .instagram-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .instagram-btn:hover {
+            box-shadow: 0 10px 25px rgba(168, 85, 247, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        .footer-subtitle {
+            color: #9ca3af;
+        }
+
+        .footer-copyright {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Friends Project Hub</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Affordable Projects for <span class="highlight">Engineering Students</span></h1>
+        <p>Empowering students with innovative, real-world project solutions at affordable prices. 50+ ready-to-deploy projects for Engineering, BCA, and MCA students!</p>
+        <div class="cta-buttons">
+            <a href="#projects" class="btn btn-primary">Browse Projects</a>
+            <a href="#contact" class="btn btn-secondary">Book Free Consultation</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">Why Choose Us?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">✓</div>
+                <p><strong>100% Working Projects</strong></p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">{ }</div>
+                <p><strong>Source Code + Documentation Included</strong></p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <p><strong>Free Installation Support</strong></p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">₹</div>
+                <p><strong>Student-Friendly Pricing</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <h2 class="section-title">Project Categories</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <h3>Artificial Intelligence & Machine Learning</h3>
+            </div>
+            <div class="category-card">
+                <h3>Web Development & Applications</h3>
+            </div>
+            <div class="category-card">
+                <h3>Computer Vision & Image Processing</h3>
+            </div>
+            <div class="category-card">
+                <h3>Natural Language Processing (NLP)</h3>
+            </div>
+            <div class="category-card">
+                <h3>Healthcare & Biomedical Applications</h3>
+            </div>
+            <div class="category-card">
+                <h3>Data Science & Analytics</h3>
+            </div>
+        </div>
+        <p class="ieee-note">+ IEEE research-based projects available for advanced exploration</p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>AI Healthcare Chatbot (BERT)</h3>
+                <div class="tech-stack">Python, Flask, BERT, NLP</div>
+                <p>Chatbot that answers health queries & books appointments using BERT for better accuracy.</p>
+            </div>
+            <div class="project-card">
+                <h3>Indian Sign Language Detection</h3>
+                <div class="tech-stack">Python, OpenCV, CNN</div>
+                <p>Detects & translates hand gestures of Indian Sign Language into readable text.</p>
+            </div>
+            <div class="project-card">
+                <h3>Drowsiness Detection Using ML</h3>
+                <div class="tech-stack">OpenCV, Dlib, Python, ML</div>
+                <p>Detects drowsiness in drivers using facial landmark and alerts in real-time.</p>
+            </div>
+            <div class="project-card">
+                <h3>Customer Churn Prediction</h3>
+                <div class="tech-stack">Python, ML (Logistic, XGBoost)</div>
+                <p>Predicts which customers are likely to leave using historical data.</p>
+            </div>
+            <div class="project-card">
+                <h3>Sugarcane Disease Detection Chatbot</h3>
+                <div class="tech-stack">Python, TensorFlow/Keras, OpenCV, Flask/Django, NLP</div>
+                <p>A system that allows farmers to upload images of sugarcane leaves/stalks to instantly detect and classify diseases.</p>
+            </div>
+            <div class="project-card">
+                <h3>Plant Disease Detection</h3>
+                <div class="tech-stack">CNN, TensorFlow, Python</div>
+                <p>Identifies plant leaf diseases from images using deep learning models.</p>
+            </div>
+            <div class="project-card">
+                <h3>Diabetic Retinopathy Detection</h3>
+                <div class="tech-stack">CNN, Keras, Transfer Learning</div>
+                <p>Detects DR stages from retinal images using deep learning.</p>
+            </div>
+            <div class="project-card">
+                <h3>AI Virtual Mouse</h3>
+                <div class="tech-stack">Python, OpenCV, Mediapipe</div>
+                <p>Controls mouse cursor using hand gestures via computer vision techniques.</p>
+            </div>
+            <div class="project-card">
+                <h3>Email Spam Detection</h3>
+                <div class="tech-stack">NLP, Naive Bayes, Python</div>
+                <p>Filters out spam emails using text classification techniques.</p>
+            </div>
+        </div>
+        <p class="more-projects">And many more...! All projects include additional features.</p>
+    </section>
+
+    <!-- Promise Section -->
+    <section class="promise">
+        <h2>Our Promise</h2>
+        <p>At Friends Project Hub, we don't just provide projects—we provide knowledge, guidance, and support to help you succeed in your academic journey.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Contact Us Today!</h2>
+        <p class="contact-subtitle">Book Your Free Consultation</p>
+        
+        <div class="contact-buttons">
+            <a href="tel:+917204700484" class="contact-btn">
+                📞 +91 72047 00484
+            </a>
+            <a href="tel:+919353955673" class="contact-btn">
+                📞 +91 93539 55673
+            </a>
+        </div>
+
+        <div>
+            <a href="https://instagram.com/friends_project_hub" target="_blank" class="instagram-btn">
+                📷 @friends_project_hub
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Friends Project Hub</strong></p>
+        <p class="footer-subtitle">Empowering students with innovative, real-world project solutions</p>
+        <p class="footer-copyright">© 2025 Friends Project Hub. All rights reserved.</p>
+    </footer>
+</body>
+</html>
